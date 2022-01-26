@@ -1,0 +1,83 @@
+$btnSize: 180px;
+$colorGreenBtn: #41c731;
+$colorRedBtn: #e33f3f;
+$colorBlueBtn: #387bcf;
+$colorYellowBtn: #ebdd3c;
+
+@mixin boxShadow($x, $y) {
+    box-shadow: $x $y 25px -5px rgba(255, 255, 255, 0.2) inset;
+}
+
+.btn {
+    width: $btnSize;
+    height: $btnSize;
+    position: absolute;
+    box-sizing: border-box;
+
+    &__0 {
+        top: 0;
+        left: 0;
+        background-color: $colorGreenBtn;
+        border-radius: $btnSize 0 0 0;
+
+        &:hover {
+            @include boxShadow(20px, 20px);
+        }
+    }
+
+
+    &__1 {
+        top: 0;
+        right: 0;
+        background-color: $colorRedBtn;
+        border-radius: 0 $btnSize 0 0;
+
+        &:hover {
+            @include boxShadow(-20px, 20px);
+        }
+    }
+
+
+
+    &__2 {
+        bottom: 0;
+        left: 0;
+        background-color: $colorBlueBtn;
+        border-radius: 0 0 0 $btnSize;
+
+        &:hover {
+            @include boxShadow(20px, -20px);
+        }
+    }
+
+
+    &__3 {
+        bottom: 0;
+        right: 0;
+        background-color: $colorYellowBtn;
+        border-radius: 0 0 $btnSize 0;
+
+        &:hover {
+            @include boxShadow(-20px, -20px);
+        }
+
+    }
+}
+
+
+
+.active__0 {
+    background-color: $colorGreenBtn - 50;
+}
+
+.active__1 {
+    background-color: $colorRedBtn - 50;
+}
+
+.active__2 {
+    background-color: $colorBlueBtn - 50;
+}
+
+.active__3 {
+    background-color: $colorYellowBtn - 50;
+}
