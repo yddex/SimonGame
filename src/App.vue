@@ -89,25 +89,29 @@ export default {
     },
 
     methods: {
+        //Начало 
         start() {
             this.game.status = true;
             this.game.pick = [];
             this.game.end = false;
             this.gameRound();
         },
-
+        
+        //Основной метод, задающий последовательнотсь
         gameRound() {
             this.player.step = false;
             this.player.pick = [];
             this.newStep();
             let ticks = 0;
             let interval = setInterval(() => {
+
+                if(this.game.end){clearInterval(interval)}
+
                 let id = this.game.pick[ticks];
                 let btn = this.simonBtn.find((el) => {
                     return el.id == id;
                 });
                 this.moveBtn(btn);
-                console.log(ticks);
                 ticks++;
                 if (ticks == this.game.pick.length) {
                     clearInterval(interval);
@@ -119,6 +123,7 @@ export default {
 
         },
 
+        //Метод обрабатывает окончание игры
         getGameOver() {
             this.game.status = false;
             this.player.step = false;
@@ -131,6 +136,7 @@ export default {
             }
         },
 
+        //Сравнение заданной последовательности и игрока
         compare() {
             this.player.pick.forEach((element, i) => {
                 if (element != this.game.pick[i]) {
@@ -142,6 +148,8 @@ export default {
                 this.gameRound();
             }
         },
+
+        //Метод добавляет новое нажатие в последовательность 
         newStep() {
             let randomId = this.getRandomID();
             let btnFound = this.simonBtn.find((el) => {
@@ -150,6 +158,7 @@ export default {
             this.game.pick.push(btnFound.id);
         },
 
+        //Обработка активирования кнопки
         moveBtn(btn) {
             btn.active = true;
             new Audio(btn.sound).play();
@@ -159,6 +168,7 @@ export default {
 
         },
 
+        //Обработчик нажатия игрока
         handlerBtn(btn) {
             if (this.player.step) {
                 this.moveBtn(btn);
@@ -167,6 +177,7 @@ export default {
             }
         },
 
+        
         getRandomID() {
             return parseInt(Math.random() * (3 - 0) + 0);
         }
