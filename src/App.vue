@@ -25,12 +25,12 @@
                         <h2 class="option-title">Уровень сложности:</h2>
     
                         <div class="option">
-                            <input type="radio" value="1500" id="easy" v-model="timeout" class="check-lvl">
+                            <input type="radio" value="900" id="easy" v-model="timeout" class="check-lvl">
                             <label for="easy">Легкий</label>
                         </div>
     
                         <div class="option">
-                            <input type="radio" value="1000" id="standart" v-model="timeout" class="check-lvl" checked>
+                            <input type="radio" value="600" id="standart" v-model="timeout" class="check-lvl" checked>
                             <label for="standart">Средний</label>
                         </div>
     
@@ -84,7 +84,7 @@ export default {
             end: false
         },
         rounds: 0,
-        timeout: 1000,
+        timeout: 600,
       }
     },
 
@@ -166,10 +166,10 @@ export default {
         //Обработка активирования кнопки
         moveBtn(btn) {
             btn.active = true;
-            new Audio(btn.sound).play();
             setTimeout(() => {
                 btn.active = false;
-            }, 50)
+            }, 80)
+            new Audio(btn.sound).play();
 
         },
 
