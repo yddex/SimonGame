@@ -105,13 +105,18 @@ export default {
             let ticks = 0;
             let interval = setInterval(() => {
 
-                if(this.game.end){clearInterval(interval)}
-
                 let id = this.game.pick[ticks];
                 let btn = this.simonBtn.find((el) => {
                     return el.id == id;
                 });
-                this.moveBtn(btn);
+
+                if(!this.game.end){
+                    this.moveBtn(btn);
+                    }
+                else{
+                    clearInterval(interval)
+                    }
+
                 ticks++;
                 if (ticks == this.game.pick.length) {
                     clearInterval(interval);
